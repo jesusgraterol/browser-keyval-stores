@@ -1,12 +1,12 @@
-import type { IRecordID, IStoreID } from './shared/types.js';
+import type { IStoreMechanism, IRecordID } from './shared/types.js';
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
 export {
   // shared
+  type IStoreMechanism,
   type IRecordID,
-  type IStoreID,
 
   // ...
 };
