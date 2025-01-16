@@ -12,7 +12,7 @@ import { IRecordID } from '../shared/types.js';
  */
 const buildDataKey = (storeID: string, recordID: IRecordID): string => {
   if (recordID === undefined) {
-    return storeID
+    return storeID;
   }
   return `${storeID}_${recordID}`;
 };

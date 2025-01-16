@@ -1,4 +1,5 @@
 import { IRecordID } from '../../shared/types.js';
+import { buildDataKey } from '../../utils/index.js';
 import { ITempMemoryStore } from './types.js';
 
 /* ************************************************************************************************
@@ -21,7 +22,7 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
   public readonly isCompatible: boolean = true;
 
   // the object holding the records
-  private readonly __data: Record<string, T> = {};
+  private readonly __data: Record<string, T | undefined> = {};
 
 
 
@@ -42,13 +43,23 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
    *                                           METHODS                                            *
    ********************************************************************************************** */
 
+  /**
+   * Retrieves a record by ID. If none, retrieves the data stored at the root of the store.
+   * @param id
+   * @returns T | undefined
+   */
+  public read(id?: IRecordID): T | undefined {
+    return this.__data[buildDataKey(this.id, id)];
+  }
 
   /**
-   * ...
-   * @param id 
+   * Writes data on a record based on its ID. If none was provided, it writes at the root of the
+   * store. Moreover, write(someID, undefined) is equivalent to having a delete method.
+   * @param id
+   * @param data
    */
-  public read(id: IRecordID): T | undefined {
-
+  public write(id?: IRecordID, data: T | undefined = undefined): void {
+    this.__data[buildDataKey(this.id, id)] = data;
   }
 }
 
