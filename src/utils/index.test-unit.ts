@@ -1,6 +1,5 @@
-import { describe, test, expect } from 'vitest';
-import { buildDataKey } from './index.js';
-
+import { describe, afterEach, test, expect, vi } from 'vitest';
+import { buildDataKey, isMechanismCompatible } from './index.js';
 
 /* ************************************************************************************************
  *                                             TESTS                                              *
@@ -13,5 +12,21 @@ describe('buildDataKey', () => {
     ['testStoreID', undefined, 'testStoreID'],
   ])('buildDataKey(%s, %s) -> %s', (storeID, recordID, expected) => {
     expect(buildDataKey(storeID, recordID)).toBe(expected);
+  });
+});
+
+
+
+
+describe('isMechanismCompatible', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  test('can check if a storage mechanism is compatible', () => {
+    vi.stubGlobal('window', { });
+    expect(isMechanismCompatible('localStorage')).toBe(false);
+    vi.stubGlobal('window', { localStorage: {} });
+    expect(isMechanismCompatible('localStorage')).toBe(true);
   });
 });

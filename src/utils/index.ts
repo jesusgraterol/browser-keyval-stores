@@ -1,4 +1,4 @@
-import { IRecordID } from '../shared/types.js';
+import { IRecordID, IStoreMechanism } from '../shared/types.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -17,6 +17,15 @@ const buildDataKey = (storeID: string, recordID: IRecordID): string => {
   return `${storeID}_${recordID}`;
 };
 
+/**
+ * Checks if a storage mechanism is present in the window object.
+ * @param name
+ * @returns boolean
+ */
+const isMechanismCompatible = (name: IStoreMechanism): boolean => window && name in window;
+
+
+
 
 
 /* ************************************************************************************************
@@ -24,4 +33,5 @@ const buildDataKey = (storeID: string, recordID: IRecordID): string => {
  ************************************************************************************************ */
 export {
   buildDataKey,
+  isMechanismCompatible,
 };
