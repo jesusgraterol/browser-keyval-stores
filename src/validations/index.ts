@@ -1,17 +1,27 @@
-
+import { encodeError } from 'error-message-utils';
+import { ERRORS } from '../shared/errors.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
  ************************************************************************************************ */
-type IError = 'INVALID_JSON_DATA';
-const ERRORS: { [key in IError]: IError } = {
-  INVALID_JSON_DATA: 'INVALID_JSON_DATA',
+
+/**
+ * Ensures format of the data complies with the JSON specs and can be serialized.
+ * @param data
+ */
+const validateJSONData = (data: Record<string, any> | Array<any>): void => {
+  if (!data || typeof data !== 'object') {
+    throw new Error(encodeError('The data must be an object or an array. It must also be JSON Serializable.', ERRORS.INVALID_JSON_DATA));
+  }
 };
+
+
+
 
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
 export {
-  ERRORS,
+  validateJSONData,
 };
