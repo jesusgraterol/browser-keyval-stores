@@ -14,8 +14,9 @@ interface ITempMemoryStore<T> {
   isCompatible: boolean;
 
   // actions
-  read: (id?: IRecordID) => T | undefined;
-  write: (id?: IRecordID, data?: T | undefined) => void;
+  get: (id?: IRecordID) => T | undefined;
+  set: (id: IRecordID, data: T) => void;
+  del(id?: IRecordID): void;
 }
 
 

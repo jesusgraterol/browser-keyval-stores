@@ -22,7 +22,7 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
   public readonly isCompatible: boolean = true;
 
   // the object holding the records
-  private readonly __data: Record<string, T | undefined> = {};
+  private readonly __data: Record<string, T> = {};
 
 
 
@@ -45,21 +45,29 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
 
   /**
    * Retrieves a record by ID. If none, retrieves the data stored at the root of the store.
-   * @param id
+   * @param id?
    * @returns T | undefined
    */
-  public read(id?: IRecordID): T | undefined {
+  public get(id?: IRecordID): T | undefined {
     return this.__data[buildDataKey(this.id, id)];
   }
 
   /**
-   * Writes data on a record based on its ID. If none was provided, it writes at the root of the
-   * store. Moreover, write(someID, undefined) is equivalent to having a delete method.
+   * Writes data on a record based on its ID. If none is provided, it writes at the root of the
+   * store.
    * @param id
    * @param data
    */
-  public write(id?: IRecordID, data: T | undefined = undefined): void {
+  public set(id: IRecordID, data: T): void {
     this.__data[buildDataKey(this.id, id)] = data;
+  }
+
+  /**
+   * Deletes the record based on its ID. If none is provided, it deletes the root of the store.
+   * @param id?
+   */
+  public del(id?: IRecordID): void {
+    delete this.__data[buildDataKey(this.id, id)];
   }
 }
 
