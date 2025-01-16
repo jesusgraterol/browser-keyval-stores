@@ -1,12 +1,6 @@
 import { ILocalStorageStore, ISessionStorageStore } from './types.js';
-
-/* ************************************************************************************************
- *                                         IMPLEMENTATION                                         *
- ************************************************************************************************ */
-
-
-
-
+import { LocalStorageStore } from './local-storage.js';
+import { SessionStorageStore } from './session-storage.js';
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
@@ -17,5 +11,6 @@ export {
   type ISessionStorageStore,
 
   // stores
-  WebStorageStore,
+  LocalStorageStore,
+  SessionStorageStore,
 };
