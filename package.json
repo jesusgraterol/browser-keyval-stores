@@ -1,8 +1,8 @@
 {
-  "name": "browser-dbs",
+  "name": "browser-keyval-stores",
   "version": "1.0.0",
   "private": false,
-  "description": "The browser-dbs package offers a clean and unified API to interact with browser storage mechanisms (localStorage, sessionStorage, and IndexedDB) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.",
+  "description": "The browser-keyval-stores package offers a clean and unified API to interact with browser storage mechanisms (localStorage, sessionStorage, and IndexedDB) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jesusgraterol/browser-dbs.git"
+    "url": "git+https://github.com/jesusgraterol/browser-keyval-stores.git"
   },
   "keywords": [
     "browser",
@@ -31,9 +31,9 @@
   "author": "Jesus Graterol",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jesusgraterol/browser-dbs/issues"
+    "url": "https://github.com/jesusgraterol/browser-keyval-stores/issues"
   },
-  "homepage": "https://github.com/jesusgraterol/browser-dbs#readme",
+  "homepage": "https://github.com/jesusgraterol/browser-keyval-stores#readme",
   "devDependencies": {
     "@types/node": "^22.10.6",
     "@typescript-eslint/eslint-plugin": "^7.18.0",

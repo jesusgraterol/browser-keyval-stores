@@ -1,6 +1,6 @@
-# Browser Databases
+# Browser KeyVal Stores
 
-The `browser-dbs` package offers a clean and unified API to interact with browser storage mechanisms ([`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage), and [`IndexedDB`](https://developer.mozilla.org/en-US/docs/Web/API/Window/indexedDB)) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.
+The `browser-keyval-stores` package offers a clean and unified API to interact with browser storage mechanisms ([`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage), and [`IndexedDB`](https://developer.mozilla.org/en-US/docs/Web/API/Window/indexedDB)) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.
 
 
 
@@ -12,7 +12,7 @@ The `browser-dbs` package offers a clean and unified API to interact with browse
 
 Install the package:
 ```bash
-npm install -S browser-dbs
+npm install -S browser-keyval-stores
 ```
 
 
@@ -21,7 +21,7 @@ npm install -S browser-dbs
 ...
 
 ```typescript
-import { ... } from 'browser-dbs';
+import { ... } from 'browser-keyval-stores';
 
 // ...
 ```
