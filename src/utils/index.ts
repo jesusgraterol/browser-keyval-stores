@@ -30,6 +30,13 @@ const isMechanismCompatible = (name: IStoreMechanism): boolean => {
   }
 };
 
+/**
+ * Returns the value of a property based on a key.
+ * @param key
+ * @returns any
+ */
+const getWindowProp = (key: keyof Window): any => window[key];
+
 
 
 
@@ -40,4 +47,5 @@ const isMechanismCompatible = (name: IStoreMechanism): boolean => {
 export {
   buildDataKey,
   isMechanismCompatible,
+  getWindowProp,
 };
