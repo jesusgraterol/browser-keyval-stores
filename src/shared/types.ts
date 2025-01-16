@@ -12,6 +12,12 @@
  */
 type IRecordID = undefined | string | number;
 
+/**
+ * Store ID
+ * The idenfiers for each supported store mechanism.
+ */
+type IStoreID = 'tempMemory' | 'localStorage' | 'sessionStorage' | 'indexedDB';
+
 
 
 
@@ -21,4 +27,5 @@ type IRecordID = undefined | string | number;
  ************************************************************************************************ */
 export type {
   IRecordID,
+  IStoreID,
 };
