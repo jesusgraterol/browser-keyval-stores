@@ -1,4 +1,6 @@
+import { encodeError, extractMessage } from 'error-message-utils';
 import { IRecordID, IStoreMechanism } from '../shared/types.js';
+import { ERRORS } from '../shared/errors.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
@@ -35,7 +37,41 @@ const isMechanismCompatible = (name: IStoreMechanism): boolean => {
  * @param key
  * @returns any
  */
-const getWindowProp = (key: keyof Window): any => window[key];
+const getWindowProp = (key: keyof Window): any => {
+  try {
+    return window[key];
+  } catch (e) {
+    return undefined;
+  }
+};
+
+/**
+ * Attempts to parse JSON data.
+ * @param data
+ * @returns T
+ * @throws
+ * - FAILED_TO_PARSE_JSON: if the JSON string is invalid.
+ */
+const parseJSON = <T>(data: string): T => {
+  try {
+    return JSON.parse(data);
+  } catch (e) {
+    throw new Error(encodeError(`Unable to parse the JSON data: ${extractMessage(e)}`, ERRORS.FAILED_TO_PARSE_JSON));
+  }
+};
+
+/**
+ * Attempts to stringify a JSON object.
+ * @param data
+ * @returns string
+ */
+const stringifyJSON = <T>(data: T): string => {
+  try {
+    return JSON.stringify(data);
+  } catch (e) {
+    throw new Error(encodeError(`Unable to stringify the JSON data: ${extractMessage(e)}`, ERRORS.FAILED_TO_STRINGIFY_JSON));
+  }
+};
 
 
 
@@ -48,4 +84,6 @@ export {
   buildDataKey,
   isMechanismCompatible,
   getWindowProp,
+  parseJSON,
+  stringifyJSON,
 };

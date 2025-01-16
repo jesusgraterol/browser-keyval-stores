@@ -1,5 +1,12 @@
 import { IRecordID } from '../../shared/types.js';
-import { isMechanismCompatible, getWindowProp } from '../../utils/index.js';
+import {
+  isMechanismCompatible,
+  getWindowProp,
+  buildDataKey,
+  parseJSON,
+  stringifyJSON,
+} from '../../utils/index.js';
+import { validateJSONData } from '../../validations/index.js';
 import { ITempMemoryStore, TempMemoryStore } from '../temp-memory/index.js';
 import { IWebStorageStore } from './types.js';
 
@@ -62,6 +69,10 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    */
   public get(id?: IRecordID): T | undefined {
     if (this.isCompatible) {
+      const data = this.__webStorage!.getItem(buildDataKey(this.id, id));
+      if (data) {
+        return parseJSON(data) as T;
+      }
       return undefined;
     }
     return this.__tempMemory!.get(id);
@@ -75,7 +86,8 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    */
   public set(id: IRecordID, data: T): void {
     if (this.isCompatible) {
-      // ...
+      validateJSONData(data);
+      this.__webStorage!.setItem(buildDataKey(this.id, id), stringifyJSON(data));
     } else {
       this.__tempMemory!.set(id, data);
     }
@@ -87,7 +99,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    */
   public del(id?: IRecordID): void {
     if (this.isCompatible) {
-      // ...
+      this.__webStorage!.removeItem(buildDataKey(this.id, id));
     } else {
       this.__tempMemory!.del(id);
     }
