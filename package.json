@@ -2,7 +2,7 @@
   "name": "browser-keyval-stores",
   "version": "1.0.0",
   "private": false,
-  "description": "The browser-keyval-stores package offers a clean and unified API to interact with browser storage mechanisms (localStorage, sessionStorage, and IndexedDB) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.",
+  "description": "The browser-keyval-stores package offers a clean and unified API to interact with browser storage mechanisms (localStorage, sessionStorage, and indexedDB) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
