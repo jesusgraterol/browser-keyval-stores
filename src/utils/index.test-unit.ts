@@ -24,7 +24,7 @@ describe('isMechanismCompatible', () => {
   });
 
   test('can check if a storage mechanism is compatible', () => {
-    vi.stubGlobal('window', { });
+    vi.stubGlobal('window', undefined);
     expect(isMechanismCompatible('localStorage')).toBe(false);
     vi.stubGlobal('window', { localStorage: {} });
     expect(isMechanismCompatible('localStorage')).toBe(true);

@@ -22,7 +22,13 @@ const buildDataKey = (storeID: string, recordID: IRecordID): string => {
  * @param name
  * @returns boolean
  */
-const isMechanismCompatible = (name: IStoreMechanism): boolean => window && name in window;
+const isMechanismCompatible = (name: IStoreMechanism): boolean => {
+  try {
+    return Boolean(window) && typeof window === 'object' && name in window;
+  } catch (e) {
+    return false;
+  }
+};
 
 
 
