@@ -21,6 +21,21 @@ interface IWebStorageStore<T> {
   del: (id?: IRecordID) => void;
 }
 
+/**
+ * Local Storage Store
+ * The store that makes use of Window.localStorage.
+ */
+interface ILocalStorageStore<T> extends IWebStorageStore<T> {
+  // ...
+}
+
+/**
+ * Session Storage Store
+ * The store that makes use of Window.sessionStorage.
+ */
+interface ISessionStorageStore<T> extends IWebStorageStore<T> {
+  // ...
+}
 
 
 
@@ -30,4 +45,6 @@ interface IWebStorageStore<T> {
  ************************************************************************************************ */
 export type {
   IWebStorageStore,
+  ILocalStorageStore,
+  ISessionStorageStore,
 };

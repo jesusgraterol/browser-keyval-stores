@@ -20,19 +20,6 @@ const buildDataKey = (storeID: string, recordID: IRecordID): string => {
 };
 
 /**
- * Checks if a storage mechanism is present in the window object.
- * @param name
- * @returns boolean
- */
-const isMechanismCompatible = (name: IStoreMechanism): boolean => {
-  try {
-    return Boolean(window) && typeof window === 'object' && name in window;
-  } catch (e) {
-    return false;
-  }
-};
-
-/**
  * Returns the value of a property based on a key.
  * @param key
  * @returns any
@@ -42,6 +29,19 @@ const getWindowProp = (key: keyof Window): any => {
     return window[key];
   } catch (e) {
     return undefined;
+  }
+};
+
+/**
+ * Checks if a storage mechanism is present in the window object.
+ * @param name
+ * @returns boolean
+ */
+const isMechanismCompatible = (name: Exclude<IStoreMechanism, 'tempMemory'>): boolean => {
+  try {
+    return Boolean(window) && typeof window === 'object' && name in window;
+  } catch (e) {
+    return false;
   }
 };
 

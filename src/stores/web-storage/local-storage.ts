@@ -1,8 +1,19 @@
-import { ILocalStorageStore, ISessionStorageStore } from './types.js';
+import { ILocalStorageStore } from './types.js';
+import { WebStorageStore } from './web-storage.js';
 
 /* ************************************************************************************************
  *                                         IMPLEMENTATION                                         *
  ************************************************************************************************ */
+
+/**
+ * Local Storage Store
+ * The store that makes use of Window.localStorage.
+ */
+class LocalStorageStore<T> extends WebStorageStore<T> implements ILocalStorageStore<T> {
+  constructor(id: string) {
+    super(id, 'localStorage');
+  }
+}
 
 
 
@@ -12,10 +23,5 @@ import { ILocalStorageStore, ISessionStorageStore } from './types.js';
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
 export {
-  // types
-  type ILocalStorageStore,
-  type ISessionStorageStore,
-
-  // stores
-  WebStorageStore,
+  LocalStorageStore,
 };

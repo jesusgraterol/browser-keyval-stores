@@ -18,12 +18,6 @@ type IStoreMechanism = 'tempMemory' | 'localStorage' | 'sessionStorage' | 'index
  */
 type IRecordID = undefined | string | number;
 
-/**
- * JSON Data
- * Utility type to list the values supported by the WebStorageStore.
- */
-type IJSONData = Record<string, any> | Array<any>;
-
 
 
 
@@ -34,5 +28,4 @@ type IJSONData = Record<string, any> | Array<any>;
 export type {
   IStoreMechanism,
   IRecordID,
-  IJSONData,
 };
