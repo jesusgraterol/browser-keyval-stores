@@ -108,6 +108,31 @@ import { IndexedDBStore } from 'browser-keyval-stores';
   ```
 </details>
 
+<details>
+  <summary><code>IWebStorageStore<T></code></summary>
+
+  Object in charge of interacting with the Browser's Storage API. This API is used by [`Window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) & [`Window.sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage).
+  ```typescript
+  interface IWebStorageStore<T> {
+    // properties
+    id: string;
+
+    // methods
+    get: (id?: IRecordID) => T | undefined;
+    set: (id: IRecordID, data: T) => void;
+    del: (id?: IRecordID) => void;
+  }
+
+  interface ILocalStorageStore<T> extends IWebStorageStore<T> {
+    // ...
+  }
+
+  interface ISessionStorageStore<T> extends IWebStorageStore<T> {
+    // ...
+  }
+  ```
+</details>
+
 
 
 
