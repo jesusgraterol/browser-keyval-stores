@@ -21,9 +21,31 @@ npm install -S browser-keyval-stores
 #### `localStorage` Store
 
 ```typescript
-import { createStore } from 'browser-keyval-stores';
+import { LocalStorageStore } from 'browser-keyval-stores';
 
-// ...
+const uid = '2d22df80-fc4b-498a-a4a7-734daa71c8dd';
+
+type IUserPreferences = {
+  language: string,
+  theme: string
+};
+
+const store = new LocalStorageStore<IUserPreferences>('userPreferences');
+
+store.get(uid);
+// undefined
+
+store.set(uid, { language: 'en', theme: 'dark' });
+store.get(uid);
+// { language: 'en', theme: 'dark' }
+
+store.set(uid, { language: 'es', theme: 'light' });
+store.get(uid);
+// { language: 'es', theme: 'light' }
+
+store.del(uid);
+store.get(uid);
+// undefined
 ```
 
 #### `sessionStorage` Store
@@ -48,7 +70,7 @@ import { createStore } from 'browser-keyval-stores';
 
 <details>
   <summary><code>IStoreMechanism</code></summary>
-  
+
   The supported browser storage mechanisms.
   ```typescript
   type IStoreMechanism = 'tempMemory' | 'localStorage' | 'sessionStorage' | 'indexedDB';
@@ -57,7 +79,7 @@ import { createStore } from 'browser-keyval-stores';
 
 <details>
   <summary><code>IRecordID</code></summary>
-  
+
   The identifier used to manage records. The store behaves differently based on the type:
   - `undefined`: the data will be stored at the root of the store
   - `string` | `number`: the value will be coerced into a string and can be used to locate the data
