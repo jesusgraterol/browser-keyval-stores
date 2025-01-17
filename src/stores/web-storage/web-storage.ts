@@ -1,7 +1,6 @@
 import { STORAGE_TEST_DATA } from '../../shared/constants.js';
 import { IRecordID } from '../../shared/types.js';
 import {
-  isMechanismCompatible,
   getWindowProp,
   buildDataKey,
   parseJSON,
@@ -69,8 +68,8 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   private __checkCompatibility = (): void => {
     if (this.__isCompatible === undefined) {
       try {
-        if (isMechanismCompatible(this.__mechanism)) {
-          this.__webStorage = getWindowProp(this.__mechanism) as Storage;
+        this.__webStorage = getWindowProp(this.__mechanism);
+        if (this.__webStorage) {
           this.__webStorage.setItem(STORAGE_TEST_DATA.key, STORAGE_TEST_DATA.value);
           this.__webStorage.removeItem(STORAGE_TEST_DATA.key);
           this.__isCompatible = true;

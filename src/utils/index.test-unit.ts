@@ -1,5 +1,5 @@
 import { describe, afterEach, test, expect, vi } from 'vitest';
-import { buildDataKey, isMechanismCompatible } from './index.js';
+import { buildDataKey, getWindowProp } from './index.js';
 
 /* ************************************************************************************************
  *                                             TESTS                                              *
@@ -18,15 +18,16 @@ describe('buildDataKey', () => {
 
 
 
-describe('isMechanismCompatible', () => {
+describe('getWindowProp', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
   });
 
-  test('can check if a storage mechanism is compatible', () => {
+  test('can extract a property from the window object if it exists', () => {
+    expect(getWindowProp('localStorage')).toBeUndefined();
     vi.stubGlobal('window', undefined);
-    expect(isMechanismCompatible('localStorage')).toBe(false);
+    expect(getWindowProp('localStorage')).toBe(undefined);
     vi.stubGlobal('window', { localStorage: {} });
-    expect(isMechanismCompatible('localStorage')).toBe(true);
+    expect(getWindowProp('localStorage')).toStrictEqual({});
   });
 });

@@ -1,5 +1,5 @@
 import { encodeError, extractMessage } from 'error-message-utils';
-import { IRecordID, IStoreMechanism } from '../shared/types.js';
+import { IRecordID } from '../shared/types.js';
 import { ERRORS } from '../shared/errors.js';
 
 /* ************************************************************************************************
@@ -24,24 +24,14 @@ const buildDataKey = (storeID: string, recordID: IRecordID): string => {
  * @param key
  * @returns any
  */
-const getWindowProp = (key: keyof Window): any => {
+const getWindowProp = <T>(key: keyof Window): T | undefined => {
   try {
-    return window[key];
+    if (window && typeof window === 'object' && key in window) {
+      return window[key] as T;
+    }
+    return undefined;
   } catch (e) {
     return undefined;
-  }
-};
-
-/**
- * Checks if a storage mechanism is present in the window object.
- * @param name
- * @returns boolean
- */
-const isMechanismCompatible = (name: Exclude<IStoreMechanism, 'tempMemory'>): boolean => {
-  try {
-    return Boolean(window) && typeof window === 'object' && name in window;
-  } catch (e) {
-    return false;
   }
 };
 
@@ -82,7 +72,6 @@ const stringifyJSON = <T>(data: T): string => {
  ************************************************************************************************ */
 export {
   buildDataKey,
-  isMechanismCompatible,
   getWindowProp,
   parseJSON,
   stringifyJSON,
