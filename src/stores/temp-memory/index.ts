@@ -18,9 +18,6 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
   // the identifier of the store instance
   public readonly id;
 
-  // this is the fallback store mechanism, it is supported by all browsers
-  public readonly isCompatible: boolean = true;
-
   // the object holding the records
   private readonly __data: Record<string, T> = {};
 

@@ -11,7 +11,6 @@ import { IRecordID } from '../../shared/types.js';
 interface ITempMemoryStore<T> {
   // properties
   id: string;
-  isCompatible: boolean;
 
   // actions
   get: (id?: IRecordID) => T | undefined;
