@@ -68,11 +68,14 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   private __checkCompatibility = (): void => {
     if (this.__isCompatible === undefined) {
       try {
+        // console.log(window);
         this.__webStorage = getWindowProp(this.__mechanism);
         if (this.__webStorage) {
+          // console.log(this.__webStorage);
           this.__webStorage.setItem(STORAGE_TEST_DATA.key, STORAGE_TEST_DATA.value);
           this.__webStorage.removeItem(STORAGE_TEST_DATA.key);
           this.__isCompatible = true;
+          // console.log('It passed through somehow :S');
         } else {
           this.__isCompatible = false;
         }
