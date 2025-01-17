@@ -9,7 +9,6 @@ describe('TempMemoryStore', () => {
   test('can instantiate a store and manage the root of it', () => {
     const store = new TempMemoryStore('unit_test');
     expect(store.id).toBe('unit_test');
-    expect(store.isCompatible).toBe(true);
     expect(store.get()).toBeUndefined();
     store.set(undefined, { foo: 'bar' });
     expect(store.get()).toStrictEqual({ foo: 'bar' });

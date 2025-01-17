@@ -29,7 +29,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   public readonly id;
 
   // true if the browser supports the storage mechanism
-  public readonly isCompatible: boolean = true;
+  private __isCompatible: boolean | undefined;
 
   // the Web Storage Instance extracted from the window object
   private readonly __webStorage: Storage | undefined;
@@ -61,6 +61,10 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   /* **********************************************************************************************
    *                                           METHODS                                            *
    ********************************************************************************************** */
+
+  private __checkCompatibility = (): void => {
+
+  };
 
   /**
    * Retrieves a record by ID. If none, retrieves the data stored at the root of the store.

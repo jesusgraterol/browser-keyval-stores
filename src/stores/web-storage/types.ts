@@ -13,7 +13,6 @@ import { IRecordID } from '../../shared/types.js';
 interface IWebStorageStore<T> {
   // properties
   id: string;
-  isCompatible: boolean;
 
   // methods
   get: (id?: IRecordID) => T | undefined;
