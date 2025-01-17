@@ -1,22 +1,17 @@
-import type { IStoreMechanism, IRecordID } from './shared/types.js';
-import {
-  type ILocalStorageStore,
-  LocalStorageStore,
-  type ISessionStorageStore,
-  SessionStorageStore,
-} from './stores/index.js';
+import { ILocalStorageStore, ISessionStorageStore } from './web-storage/types.js';
+import { LocalStorageStore } from './web-storage/local-storage.js';
+import { SessionStorageStore } from './web-storage/session-storage.js';
+
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
 export {
-  // shared
-  type IStoreMechanism,
-  type IRecordID,
+  // types
+  type ILocalStorageStore,
+  type ISessionStorageStore,
 
   // stores
-  type ILocalStorageStore,
   LocalStorageStore,
-  type ISessionStorageStore,
   SessionStorageStore,
 };

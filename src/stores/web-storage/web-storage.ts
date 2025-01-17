@@ -18,7 +18,9 @@ import { IWebStorageStore } from './types.js';
  * Web Storage Store
  * Object in charge of interacting with the Browser's Storage API. This API is used by
  * Window.sessionStorage & Window.sessionStorage.
- * https://developer.mozilla.org/en-US/docs/Web/API/Storage#instance_properties
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+ * https://developer.mozilla.org/en-US/docs/Web/API/Storage
  */
 class WebStorageStore<T> implements IWebStorageStore<T> {
   /* **********************************************************************************************
