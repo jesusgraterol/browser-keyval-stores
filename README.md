@@ -23,14 +23,14 @@ npm install -S browser-keyval-stores
 ```typescript
 import { LocalStorageStore } from 'browser-keyval-stores';
 
-const uid = '2d22df80-fc4b-498a-a4a7-734daa71c8dd';
-
 type IUserPreferences = {
   language: string,
   theme: string
 };
 
 const store = new LocalStorageStore<IUserPreferences>('userPreferences');
+
+const uid = '2d22df80-fc4b-498a-a4a7-734daa71c8dd';
 
 store.get(uid);
 // undefined
@@ -51,15 +51,35 @@ store.get(uid);
 #### `sessionStorage` Store
 
 ```typescript
-import { createStore } from 'browser-keyval-stores';
+import { SessionStorageStore } from 'browser-keyval-stores';
 
-// ...
+type IApplicationFormData = {
+  fullName: string,
+  passportNum: string,
+};
+
+const store = new SessionStorageStore<IApplicationFormData>('applicationForm');
+
+store.get();
+// undefined
+
+store.set(undefined, { fullName: 'Jess Grateol', passportNum: 'P4366918' });
+store.get();
+// { fullName: 'Jess Grateol', passportNum: 'P4366918' }
+
+store.set(undefined, { fullName: 'Jesus Graterol', passportNum: 'LA080402' });
+store.get();
+// { fullName: 'Jesus Graterol', passportNum: 'LA080402' }
+
+store.del();
+store.get();
+// undefined
 ```
 
 #### `indexedDB` Store
 
 ```typescript
-import { createStore } from 'browser-keyval-stores';
+import { IndexedDBStore } from 'browser-keyval-stores';
 
 // ...
 ```

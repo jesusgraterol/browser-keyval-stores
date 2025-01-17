@@ -6,26 +6,26 @@ import {
   SessionStorageStore,
 } from './stores/index.js';
 
-type IUserPreferences = {
-  language: string,
-  theme: string
+type IApplicationFormData = {
+  fullName: string,
+  passportNum: string,
 };
 
-const store = new LocalStorageStore<IUserPreferences>('userPreferences');
+const store = new SessionStorageStore<IApplicationFormData>('applicationForm');
 
-store.get('2d22df80-fc4b-498a-a4a7-734daa71c8dd');
+store.get();
 // undefined
 
-store.set('2d22df80-fc4b-498a-a4a7-734daa71c8dd', { language: 'en', theme: 'dark' });
-store.get('2d22df80-fc4b-498a-a4a7-734daa71c8dd');
-// { language: 'en', theme: 'dark' }
+store.set(undefined, { fullName: 'Jesus Graterol', passportNum: 'P4366918' });
+store.get();
+// { fullName: 'Jesus Graterol', passportNum: 'P4366918' }
 
-store.set('2d22df80-fc4b-498a-a4a7-734daa71c8dd', { language: 'es', theme: 'light' });
-store.get('2d22df80-fc4b-498a-a4a7-734daa71c8dd');
-// { language: 'es', theme: 'light' }
+store.set(undefined, { fullName: 'Jesus Graterol', passportNum: 'LA080402' });
+store.get();
+// { fullName: 'Jesus Graterol', passportNum: 'LA080402' }
 
-store.del('2d22df80-fc4b-498a-a4a7-734daa71c8dd');
-store.get('2d22df80-fc4b-498a-a4a7-734daa71c8dd');
+store.del();
+store.get();
 // undefined
 
 
