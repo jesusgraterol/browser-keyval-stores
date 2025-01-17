@@ -1,3 +1,4 @@
+import { STORAGE_TEST_DATA } from '../../shared/constants.js';
 import { IRecordID } from '../../shared/types.js';
 import {
   isMechanismCompatible,
@@ -28,14 +29,17 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   // the identifier of the store instance
   public readonly id;
 
+  // the mechanism that will be used to store data on the browser
+  private readonly __mechanism: 'localStorage' | 'sessionStorage';
+
   // true if the browser supports the storage mechanism
   private __isCompatible: boolean | undefined;
 
   // the Web Storage Instance extracted from the window object
-  private readonly __webStorage: Storage | undefined;
+  private __webStorage: Storage | undefined;
 
   // the instance of the TempMemoryStore used in case isCompatible is false
-  private readonly __tempMemory: ITempMemoryStore<T> | undefined;
+  private readonly __tempMemory: ITempMemoryStore<T>;
 
 
 
@@ -46,12 +50,8 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    ********************************************************************************************** */
   constructor(id: string, mechanism: 'localStorage' | 'sessionStorage') {
     this.id = id;
-    this.isCompatible = isMechanismCompatible(mechanism);
-    if (this.isCompatible) {
-      this.__webStorage = getWindowProp(mechanism);
-    } else {
-      this.__tempMemory = new TempMemoryStore(this.id);
-    }
+    this.__mechanism = mechanism;
+    this.__tempMemory = new TempMemoryStore(this.id);
   }
 
 
@@ -62,8 +62,25 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    *                                           METHODS                                            *
    ********************************************************************************************** */
 
+  /**
+   * Checks if the storage mechanism is supported by the browser. If so, it sets the __isCompatible
+   * prop to true.
+   */
   private __checkCompatibility = (): void => {
-
+    if (this.__isCompatible === undefined) {
+      try {
+        if (isMechanismCompatible(this.__mechanism)) {
+          this.__webStorage = getWindowProp(this.__mechanism) as Storage;
+          this.__webStorage.setItem(STORAGE_TEST_DATA.key, STORAGE_TEST_DATA.value);
+          this.__webStorage.removeItem(STORAGE_TEST_DATA.key);
+          this.__isCompatible = true;
+        } else {
+          this.__isCompatible = false;
+        }
+      } catch (e) {
+        this.__isCompatible = false;
+      }
+    }
   };
 
   /**
@@ -72,14 +89,15 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    * @returns T | undefined
    */
   public get(id?: IRecordID): T | undefined {
-    if (this.isCompatible) {
+    this.__checkCompatibility();
+    if (this.__isCompatible) {
       const data = this.__webStorage!.getItem(buildDataKey(this.id, id));
       if (data) {
         return parseJSON(data) as T;
       }
       return undefined;
     }
-    return this.__tempMemory!.get(id);
+    return this.__tempMemory.get(id);
   }
 
   /**
@@ -89,11 +107,12 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    * @param data
    */
   public set(id: IRecordID, data: T): void {
-    if (this.isCompatible) {
+    this.__checkCompatibility();
+    if (this.__isCompatible) {
       validateJSONData(data);
       this.__webStorage!.setItem(buildDataKey(this.id, id), stringifyJSON(data));
     } else {
-      this.__tempMemory!.set(id, data);
+      this.__tempMemory.set(id, data);
     }
   }
 
@@ -102,10 +121,11 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    * @param id?
    */
   public del(id?: IRecordID): void {
-    if (this.isCompatible) {
+    this.__checkCompatibility();
+    if (this.__isCompatible) {
       this.__webStorage!.removeItem(buildDataKey(this.id, id));
     } else {
-      this.__tempMemory!.del(id);
+      this.__tempMemory.del(id);
     }
   }
 }
