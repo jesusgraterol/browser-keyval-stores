@@ -67,7 +67,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
    * Checks if the storage mechanism is supported by the browser. If so, it sets the __isCompatible
    * prop to true.
    */
-  private __checkCompatibility = (): void => {
+  private __checkCompatibility(): void {
     if (this.__isCompatible === undefined) {
       try {
         this.__webStorage = getWindowProp(this.__mechanism);
@@ -82,7 +82,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
         this.__isCompatible = false;
       }
     }
-  };
+  }
 
   /**
    * Runs the tests to check if the storage mechanism is supported by the browser and returns true

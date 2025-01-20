@@ -39,7 +39,20 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
    *                                           METHODS                                            *
    ********************************************************************************************** */
 
-  private __checkCompatibility = async (): Promise<void> => { 
+  /**
+   * Checks if the storage mechanism is supported by the browser. If so, it sets the __isCompatible
+   * prop to true.
+   */
+  private async __checkCompatibility(): Promise<void> { 
+
+  }
+
+  /**
+   * Runs the tests to check if the storage mechanism is supported by the browser and returns true
+   * if it is.
+   * @returns Promise<boolean>
+   */
+  public async isCompatible(): Promise<boolean> {
 
   }
 

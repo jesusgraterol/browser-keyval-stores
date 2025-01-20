@@ -144,6 +144,7 @@ import { IndexedDBStore } from 'browser-keyval-stores';
     id: string;
 
     // methods
+    isCompatible(): Promise<boolean>;
     get: (id?: IRecordID) => Promise<T | undefined>;
     set: (id: IRecordID, data: T) => Promise<void>;
     del: (id?: IRecordID) => Promise<void>;
