@@ -1,4 +1,4 @@
-
+import { IRecordID } from '../../shared/types.js';
 
 /* ************************************************************************************************
  *                                             TYPES                                              *
@@ -13,7 +13,9 @@ interface IIndexedDBStore<T> {
   id: string;
 
   // methods
-  get: () => Promise<T | undefined>;
+  get: (id?: IRecordID) => Promise<T | undefined>;
+  set: (id: IRecordID, data: T) => Promise<void>;
+  del: (id?: IRecordID) => Promise<void>;
 }
 
 

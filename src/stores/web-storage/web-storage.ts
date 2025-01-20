@@ -85,7 +85,8 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   };
 
   /**
-   * Retrieves a record by ID. If none, retrieves the data stored at the root of the store.
+   * Retrieves a record by ID. If no ID is provided, it retrieves the data stored at the root of the
+   * store.
    * @param id?
    * @returns T | undefined
    */
@@ -102,7 +103,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   }
 
   /**
-   * Writes data on a record based on its ID. If none is provided, it writes at the root of the
+   * Writes data on a record based on its ID. If no ID is provided, it writes at the root of the
    * store.
    * @param id
    * @param data
@@ -118,7 +119,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   }
 
   /**
-   * Deletes the record based on its ID. If none is provided, it deletes the root of the store.
+   * Deletes the record based on its ID. If no ID is provided, it deletes the root of the store.
    * @param id?
    */
   public del(id?: IRecordID): void {

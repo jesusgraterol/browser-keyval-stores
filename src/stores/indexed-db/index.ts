@@ -1,3 +1,7 @@
+import { STORAGE_TEST_DATA } from '../../shared/constants.js';
+import { IRecordID } from '../../shared/types.js';
+import { getWindowProp, buildDataKey } from '../../utils/index.js';
+import { ITempMemoryStore, TempMemoryStore } from '../temp-memory/index.js';
 import { IIndexedDBStore } from './types.js';
 
 /* ************************************************************************************************
@@ -35,12 +39,39 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
    *                                           METHODS                                            *
    ********************************************************************************************** */
 
-	/**
-	 * ...
-	 */
-  public async get(): Promise<T | undefined> {
+  private __checkCompatibility = async (): Promise<void> => { 
 
   }
+
+  /**
+   * Retrieves a record by ID. If no ID is provided, it retrieves the data stored at the root of the
+   * store.
+   * @param id?
+   * @returns Promise<T | undefined>
+   */
+  public async get(id?: IRecordID): Promise<T | undefined> {
+
+  }
+
+  /**
+   * Writes data on a record based on its ID. If no ID is provided, it writes at the root of the
+   * store.
+   * @param id
+   * @param data
+   * @returns Promise<void>
+   */
+  public async set(id: IRecordID, data: T): Promise<void> {
+
+  }
+
+  /**
+   * Deletes the record based on its ID. If no ID is provided, it deletes the root of the store.
+   * @param id?
+   * @returns Promise<void>
+   */
+    public async del(id?: IRecordID): Promise<void> {
+
+    }
 }
 
 
