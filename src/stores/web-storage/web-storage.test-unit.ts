@@ -102,4 +102,14 @@ describe('WebStorageStore', () => {
     store.del();
     expect(window.localStorage.removeItem).not.toHaveBeenCalled();
   });
+
+  test('can determine if the mechanism is compatible', () => {
+    vi.stubGlobal('window', { });
+    const store = new WebStorageStore('unit-test', 'localStorage');
+    expect(store.isCompatible()).toBe(false);
+
+    vi.stubGlobal('window', { localStorage: STORAGE });
+    const store2 = new WebStorageStore('unit-test', 'localStorage');
+    expect(store2.isCompatible()).toBe(true);
+  });
 });
