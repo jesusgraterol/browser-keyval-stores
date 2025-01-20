@@ -133,6 +133,23 @@ import { IndexedDBStore } from 'browser-keyval-stores';
   ```
 </details>
 
+<details>
+  <summary><code>IIndexedDBStore<T></code></summary>
+
+  Object in charge of charge of interacting with the Browser's `IndexedDB` implementation.
+  ```typescript
+  interface IIndexedDBStore<T> {
+    // properties
+    id: string;
+
+    // methods
+    get: (id?: IRecordID) => Promise<T | undefined>;
+    set: (id: IRecordID, data: T) => Promise<void>;
+    del: (id?: IRecordID) => Promise<void>;
+  }
+  ```
+</details>
+
 
 
 

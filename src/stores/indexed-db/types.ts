@@ -6,7 +6,7 @@ import { IRecordID } from '../../shared/types.js';
 
 /**
  * Indexed DB Store
- * Object in charge of charge of interacting with the Browser's Indexed DB implementation.
+ * Object in charge of charge of interacting with the Browser's IndexedDB implementation.
  */
 interface IIndexedDBStore<T> {
   // properties

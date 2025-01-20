@@ -10,7 +10,7 @@ import { IIndexedDBStore } from './types.js';
 
 /**
  * Indexed DB Store
- * Object in charge of charge of interacting with the Browser's Indexed DB implementation.
+ * Object in charge of charge of interacting with the Browser's IndexedDB implementation.
  */
 class IndexedDBStore<T> implements IIndexedDBStore<T> {
   /* **********************************************************************************************
