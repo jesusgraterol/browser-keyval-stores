@@ -85,6 +85,16 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   };
 
   /**
+   * Runs the tests to check if the storage mechanism is supported by the browser and returns true
+   * if it is.
+   * @returns boolean
+   */
+  public isCompatible(): boolean {
+    this.__checkCompatibility();
+    return this.__isCompatible as boolean;
+  }
+
+  /**
    * Retrieves a record by ID. If no ID is provided, it retrieves the data stored at the root of the
    * store.
    * @param id?
