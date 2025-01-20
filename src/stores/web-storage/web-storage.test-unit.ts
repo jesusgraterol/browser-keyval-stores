@@ -108,8 +108,16 @@ describe('WebStorageStore', () => {
     const store = new WebStorageStore('unit-test', 'localStorage');
     expect(store.isCompatible()).toBe(false);
 
-    vi.stubGlobal('window', { localStorage: STORAGE });
+    vi.stubGlobal('window', {
+      localStorage: {
+        setItem: vi.fn().mockImplementation(() => { throw new Error('The storage is not supported!'); }),
+      } as unknown as Storage,
+    });
     const store2 = new WebStorageStore('unit-test', 'localStorage');
-    expect(store2.isCompatible()).toBe(true);
+    expect(store2.isCompatible()).toBe(false);
+
+    vi.stubGlobal('window', { localStorage: STORAGE });
+    const store3 = new WebStorageStore('unit-test', 'localStorage');
+    expect(store3.isCompatible()).toBe(true);
   });
 });
