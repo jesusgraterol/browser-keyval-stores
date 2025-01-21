@@ -74,7 +74,8 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
    * @returns Promise<boolean>
    */
   public async isCompatible(): Promise<boolean> {
-
+    await this.__checkCompatibility();
+    return this.__isCompatible as boolean;
   }
 
   /**
@@ -84,7 +85,11 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
    * @returns Promise<T | undefined>
    */
   public async get(id?: IRecordID): Promise<T | undefined> {
-
+    await this.__checkCompatibility();
+    if (this.__isCompatible) {
+      return get(buildDataKey(this.id, id));
+    }
+    return this.__tempMemory.get(id);
   }
 
   /**
