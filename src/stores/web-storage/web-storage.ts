@@ -39,7 +39,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   // the Web Storage Instance extracted from the window object
   private __webStorage: Storage | undefined;
 
-  // the instance of the TempMemoryStore used in case isCompatible is false
+  // the instance of the TempMemoryStore used in case __isCompatible is false
   private readonly __tempMemory: ITempMemoryStore<T>;
 
 

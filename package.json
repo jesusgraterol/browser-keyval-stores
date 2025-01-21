@@ -44,6 +44,7 @@
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "error-message-utils": "^1.1.2"
+    "error-message-utils": "^1.1.2",
+    "idb-keyval": "^6.2.1"
   }
 }
