@@ -40,9 +40,9 @@ describe('WebStorageStore', () => {
     expect(store.get(recordID)).toBeUndefined();
     expect(STORAGE.getItem).toHaveBeenNthCalledWith(1, buildDataKey(storeID, recordID));
     expect(window.localStorage.getItem).toHaveBeenNthCalledWith(1, buildDataKey(storeID, recordID));
-    store.set(recordID, updateData);
 
     // this is the second time setItem is called as it is used to check compatibility
+    store.set(recordID, updateData);
     expect(window.localStorage.setItem).toHaveBeenNthCalledWith(
       2,
       buildDataKey(storeID, recordID),
