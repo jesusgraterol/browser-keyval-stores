@@ -100,7 +100,12 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
    * @returns Promise<void>
    */
   public async set(id: IRecordID, data: T): Promise<void> {
-
+    await this.__checkCompatibility();
+    if (this.__isCompatible) {
+      await set(buildDataKey(this.id, id), data);
+    } else {
+      this.__tempMemory.set(id, data);
+    }
   }
 
   /**
