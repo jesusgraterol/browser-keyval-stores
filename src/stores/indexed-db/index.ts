@@ -113,9 +113,14 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
    * @param id?
    * @returns Promise<void>
    */
-    public async del(id?: IRecordID): Promise<void> {
-
+  public async del(id?: IRecordID): Promise<void> {
+    await this.__checkCompatibility();
+    if (this.__isCompatible) {
+      await del(buildDataKey(this.id, id));
+    } else {
+      this.__tempMemory.del(id);
     }
+  }
 }
 
 
