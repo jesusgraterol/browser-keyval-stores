@@ -46,4 +46,19 @@ describe('IndexedDBStore', () => {
     await store.del();
     expect(del).toHaveBeenNthCalledWith(2, buildDataKey(storeID, recordID));
   });
+
+  test('it falls back to the TempMemoryStore if the Storage key is not in the window', async () => {
+    const storeID = 'unit-test';
+    const recordID = undefined;
+    const updateData = { hello: 'World!' };
+    const store = new IndexedDBStore(storeID);
+    await expect(store.get(recordID)).resolves.toBeUndefined();
+    expect(get).not.toHaveBeenCalled();
+
+    await store.set(recordID, updateData);
+    expect(set).not.toHaveBeenCalled();
+
+    await store.del();
+    expect(del).not.toHaveBeenCalled();
+  });
 });
