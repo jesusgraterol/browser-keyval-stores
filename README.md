@@ -81,7 +81,21 @@ store.get();
 ```typescript
 import { IndexedDBStore } from 'browser-keyval-stores';
 
-// ...
+type IBlogPost = {
+  id: number,
+  title: string,
+  content: string,
+};
+
+const store = new IndexedDBStore<IBlogPost>('blogPosts');
+
+await store.set(1, { id: 1, title: 'Test title', content: 'This is the ...'});
+await store.get(1);
+// { id: 1, title: 'Test title', content: 'This is the ...'}
+
+await store.del(1);
+await store.get();
+// undefined
 ```
 
 
