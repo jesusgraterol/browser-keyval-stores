@@ -4,6 +4,8 @@ import {
   LocalStorageStore,
   type ISessionStorageStore,
   SessionStorageStore,
+  type IIndexedDBStore,
+  IndexedDBStore,
 } from './stores/index.js';
 
 /* ************************************************************************************************
@@ -19,4 +21,6 @@ export {
   LocalStorageStore,
   type ISessionStorageStore,
   SessionStorageStore,
+  type IIndexedDBStore,
+  IndexedDBStore,
 };
