@@ -94,7 +94,7 @@ await store.get(1);
 // { id: 1, title: 'Test title', content: 'This is the ...'}
 
 await store.del(1);
-await store.get();
+await store.get(1);
 // undefined
 ```
 
