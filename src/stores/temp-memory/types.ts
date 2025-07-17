@@ -18,13 +18,7 @@ interface ITempMemoryStore<T> {
   del(id?: IRecordID): void;
 }
 
-
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export type {
-  ITempMemoryStore,
-};
+export type { ITempMemoryStore };

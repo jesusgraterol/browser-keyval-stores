@@ -13,17 +13,16 @@ import { ERRORS } from '../shared/errors.js';
  */
 const validateJSONData = <T>(data: T): void => {
   if (!data || typeof data !== 'object') {
-    throw new Error(encodeError('The data must be an object or an array. It must also be JSON Serializable.', ERRORS.INVALID_JSON_DATA));
+    throw new Error(
+      encodeError(
+        'The data must be an object or an array. It must also be JSON Serializable.',
+        ERRORS.INVALID_JSON_DATA,
+      ),
+    );
   }
 };
-
-
-
-
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  validateJSONData,
-};
+export { validateJSONData };

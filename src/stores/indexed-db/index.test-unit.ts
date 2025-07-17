@@ -21,10 +21,6 @@ const mockSet = () => {
   set.mockRejectedValue(new Error('Error setting data'));
 };
 
-
-
-
-
 /* ************************************************************************************************
  *                                             TESTS                                              *
  ************************************************************************************************ */
@@ -99,17 +95,17 @@ describe('IndexedDBStore', () => {
   });
 
   test('can determine if the mechanism is compatible', async () => {
-    vi.stubGlobal('window', { });
+    vi.stubGlobal('window', {});
     const store = new IndexedDBStore('unit-test');
     await expect(store.isCompatible()).resolves.toBe(false);
 
-    vi.stubGlobal('window', { indexedDB: { } });
+    vi.stubGlobal('window', { indexedDB: {} });
     mockSet();
     const store2 = new IndexedDBStore('unit-test');
     await expect(store2.isCompatible()).resolves.toBe(false);
     vi.restoreAllMocks();
 
-    vi.stubGlobal('window', { indexedDB: { } });
+    vi.stubGlobal('window', { indexedDB: {} });
     const store3 = new IndexedDBStore('unit-test');
     await expect(store3.isCompatible()).resolves.toBe(true);
   });

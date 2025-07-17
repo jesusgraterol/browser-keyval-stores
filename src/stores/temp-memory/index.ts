@@ -21,20 +21,12 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
   // the object holding the records
   private readonly __data: Record<string, T> = {};
 
-
-
-
-
   /* **********************************************************************************************
    *                                         CONSTRUCTOR                                          *
    ********************************************************************************************** */
   constructor(id: string) {
     this.id = id;
   }
-
-
-
-
 
   /* **********************************************************************************************
    *                                           METHODS                                            *
@@ -67,10 +59,6 @@ class TempMemoryStore<T> implements ITempMemoryStore<T> {
     delete this.__data[buildDataKey(this.id, id)];
   }
 }
-
-
-
-
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *

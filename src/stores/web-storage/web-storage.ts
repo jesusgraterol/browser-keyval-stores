@@ -1,11 +1,6 @@
 import { STORAGE_TEST_DATA } from '../../shared/constants.js';
 import { IRecordID } from '../../shared/types.js';
-import {
-  getWindowProp,
-  buildDataKey,
-  parseJSON,
-  stringifyJSON,
-} from '../../utils/index.js';
+import { getWindowProp, buildDataKey, parseJSON, stringifyJSON } from '../../utils/index.js';
 import { validateJSONData } from '../../validations/index.js';
 import { ITempMemoryStore, TempMemoryStore } from '../temp-memory/index.js';
 import { IWebStorageStore } from './types.js';
@@ -42,10 +37,6 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   // the instance of the TempMemoryStore used in case __isCompatible is false
   private readonly __tempMemory: ITempMemoryStore<T>;
 
-
-
-
-
   /* **********************************************************************************************
    *                                         CONSTRUCTOR                                          *
    ********************************************************************************************** */
@@ -54,10 +45,6 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
     this.__mechanism = mechanism;
     this.__tempMemory = new TempMemoryStore(this.id);
   }
-
-
-
-
 
   /* **********************************************************************************************
    *                                           METHODS                                            *
@@ -142,13 +129,7 @@ class WebStorageStore<T> implements IWebStorageStore<T> {
   }
 }
 
-
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  WebStorageStore,
-};
+export { WebStorageStore };

@@ -12,7 +12,7 @@ The `browser-keyval-stores` package offers a clean and unified API to interact w
 
 Install the package:
 ```bash
-npm install -S browser-keyval-stores
+npm i -S browser-keyval-stores
 ```
 
 
@@ -104,28 +104,36 @@ await store.get(1);
 
 <details>
   <summary><code>IStoreMechanism</code></summary>
+  <br/>
 
   The supported browser storage mechanisms.
+
   ```typescript
   type IStoreMechanism = 'tempMemory' | 'localStorage' | 'sessionStorage' | 'indexedDB';
   ```
+  <br/>
 </details>
 
 <details>
   <summary><code>IRecordID</code></summary>
+  <br/>
 
   The identifier used to manage records. The store behaves differently based on the type:
+
   - `undefined`: the data will be stored at the root of the store
   - `string` | `number`: the value will be coerced into a string and can be used to locate the data
   ```typescript
   type IRecordID = undefined | string | number;
   ```
+  <br/>
 </details>
 
 <details>
   <summary><code>IWebStorageStore<T></code></summary>
+  <br/>
 
   Object in charge of interacting with the Browser's Storage API. This API is used by [`Window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) & [`Window.sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage).
+
   ```typescript
   interface IWebStorageStore<T> {
     // properties
@@ -146,10 +154,12 @@ await store.get(1);
     // ...
   }
   ```
+  <br/>
 </details>
 
 <details>
   <summary><code>IIndexedDBStore<T></code></summary>
+  <br/>
 
   Object in charge of charge of interacting with the Browser's `IndexedDB` implementation.
   ```typescript
@@ -164,6 +174,7 @@ await store.get(1);
     del: (id?: IRecordID) => Promise<void>;
   }
   ```
+  <br/>
 </details>
 
 
@@ -201,28 +212,3 @@ npm run test:unit
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-
-
-
-<br/>
-
-## Deployment
-
-Install dependencies:
-```bash
-npm install
-```
-
-
-Build the library:
-```bash
-npm start
-```
-
-
-Publish to `npm`:
-```bash
-npm publish
-```

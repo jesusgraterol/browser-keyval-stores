@@ -39,14 +39,7 @@ interface ISessionStorageStore<T> extends IWebStorageStore<T> {
   // ...
 }
 
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export type {
-  IWebStorageStore,
-  ILocalStorageStore,
-  ISessionStorageStore,
-};
+export type { IWebStorageStore, ILocalStorageStore, ISessionStorageStore };

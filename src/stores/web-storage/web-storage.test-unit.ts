@@ -14,10 +14,6 @@ const STORAGE = {
   removeItem: vi.fn(),
 } as unknown as Storage;
 
-
-
-
-
 /* ************************************************************************************************
  *                                             TESTS                                              *
  ************************************************************************************************ */
@@ -77,8 +73,12 @@ describe('WebStorageStore', () => {
     vi.stubGlobal('window', {
       localStorage: {
         getItem: vi.fn(),
-        setItem: vi.fn().mockImplementation(() => { throw new Error('The storage is not supported!'); }),
-        removeItem: vi.fn().mockImplementation(() => { throw new Error('The storage is not supported!'); }),
+        setItem: vi.fn().mockImplementation(() => {
+          throw new Error('The storage is not supported!');
+        }),
+        removeItem: vi.fn().mockImplementation(() => {
+          throw new Error('The storage is not supported!');
+        }),
       } as unknown as Storage,
     });
     const storeID = 'unit-test';
@@ -104,13 +104,15 @@ describe('WebStorageStore', () => {
   });
 
   test('can determine if the mechanism is compatible', () => {
-    vi.stubGlobal('window', { });
+    vi.stubGlobal('window', {});
     const store = new WebStorageStore('unit-test', 'localStorage');
     expect(store.isCompatible()).toBe(false);
 
     vi.stubGlobal('window', {
       localStorage: {
-        setItem: vi.fn().mockImplementation(() => { throw new Error('The storage is not supported!'); }),
+        setItem: vi.fn().mockImplementation(() => {
+          throw new Error('The storage is not supported!');
+        }),
       } as unknown as Storage,
     });
     const store2 = new WebStorageStore('unit-test', 'localStorage');

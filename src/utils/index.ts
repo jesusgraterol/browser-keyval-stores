@@ -46,7 +46,12 @@ const parseJSON = <T>(data: string): T => {
   try {
     return JSON.parse(data);
   } catch (e) {
-    throw new Error(encodeError(`Unable to parse the JSON data: ${extractMessage(e)}`, ERRORS.FAILED_TO_PARSE_JSON));
+    throw new Error(
+      encodeError(
+        `Unable to parse the JSON data: ${extractMessage(e)}`,
+        ERRORS.FAILED_TO_PARSE_JSON,
+      ),
+    );
   }
 };
 
@@ -59,20 +64,16 @@ const stringifyJSON = <T>(data: T): string => {
   try {
     return JSON.stringify(data);
   } catch (e) {
-    throw new Error(encodeError(`Unable to stringify the JSON data: ${extractMessage(e)}`, ERRORS.FAILED_TO_STRINGIFY_JSON));
+    throw new Error(
+      encodeError(
+        `Unable to stringify the JSON data: ${extractMessage(e)}`,
+        ERRORS.FAILED_TO_STRINGIFY_JSON,
+      ),
+    );
   }
 };
-
-
-
-
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  buildDataKey,
-  getWindowProp,
-  parseJSON,
-  stringifyJSON,
-};
+export { buildDataKey, getWindowProp, parseJSON, stringifyJSON };

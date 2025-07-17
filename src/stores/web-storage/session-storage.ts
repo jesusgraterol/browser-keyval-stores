@@ -15,13 +15,7 @@ class SessionStorageStore<T> extends WebStorageStore<T> implements ISessionStora
   }
 }
 
-
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  SessionStorageStore,
-};
+export { SessionStorageStore };

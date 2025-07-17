@@ -15,13 +15,7 @@ class LocalStorageStore<T> extends WebStorageStore<T> implements ILocalStorageSt
   }
 }
 
-
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export {
-  LocalStorageStore,
-};
+export { LocalStorageStore };
