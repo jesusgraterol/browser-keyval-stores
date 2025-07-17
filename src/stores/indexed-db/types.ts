@@ -19,13 +19,7 @@ interface IIndexedDBStore<T> {
   del: (id?: IRecordID) => Promise<void>;
 }
 
-
-
-
-
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
  ************************************************************************************************ */
-export type {
-  IIndexedDBStore,
-};
+export type { IIndexedDBStore };

@@ -27,10 +27,6 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
   // the instance of the TempMemoryStore used in case __isCompatible is false
   private readonly __tempMemory: ITempMemoryStore<T>;
 
-
-
-
-
   /* **********************************************************************************************
    *                                         CONSTRUCTOR                                          *
    ********************************************************************************************** */
@@ -38,10 +34,6 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
     this.id = id;
     this.__tempMemory = new TempMemoryStore(this.id);
   }
-
-
-
-
 
   /* **********************************************************************************************
    *                                           METHODS                                            *
@@ -122,10 +114,6 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
     }
   }
 }
-
-
-
-
 
 /* ************************************************************************************************
  *                                         MODULE EXPORTS                                         *
