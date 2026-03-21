@@ -196,6 +196,9 @@ await store.get(1);
 ## Running the Tests
 
 ```bash
+# unit and integration tests
+npm run test
+
 # integration tests
 npm run test:integration
 
