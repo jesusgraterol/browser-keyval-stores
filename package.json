@@ -1,6 +1,6 @@
 {
   "name": "browser-keyval-stores",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": false,
   "description": "The browser-keyval-stores package offers a clean and unified API to interact with browser storage mechanisms (localStorage, sessionStorage, and indexedDB) from your applications. It streamlines development and eliminates the need for browser-specific code when working with client-side data storage.",
   "type": "module",
@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "ts-lib-builder --tsconfig=tsconfig.build.json",
-    "test": "echo \"Error: tests are executed with  npm run test:(e2e|integration|unit|bench)\" && exit 1",
+    "test": "npm run test:unit && npm run test:integration",
     "test:integration": "vitest run --config vitest.test-integration.config.ts",
     "test:unit": "vitest run --config vitest.test-unit.config.ts",
     "test:bench": "vitest bench",
@@ -41,12 +41,12 @@
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-prettier": "10.1.5",
     "prettier": "3.6.2",
-    "ts-lib-builder": "1.0.7",
+    "ts-lib-builder": "1.0.8",
     "typescript": "5.7.3",
     "vitest": "3.2.4"
   },
   "dependencies": {
-    "error-message-utils": "1.1.5",
+    "error-message-utils": "1.2.1",
     "idb-keyval": "6.2.1"
   }
 }
