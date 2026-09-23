@@ -1,7 +1,7 @@
 import { get, set, del } from 'idb-keyval';
 import { STORAGE_TEST_DATA } from '../../shared/constants.js';
 import { IRecordID } from '../../shared/types.js';
-import { getWindowProp, buildDataKey } from '../../utils/index.js';
+import { buildDataKey } from '../../utils/index.js';
 import { ITempMemoryStore, TempMemoryStore } from '../temp-memory/index.js';
 import { IIndexedDBStore } from './types.js';
 
@@ -46,7 +46,7 @@ class IndexedDBStore<T> implements IIndexedDBStore<T> {
   private async __checkCompatibility(): Promise<void> {
     if (this.__isCompatible === undefined) {
       try {
-        const db = getWindowProp<IDBFactory | undefined>('indexedDB');
+        const db = globalThis.indexedDB;
         if (db) {
           await set(STORAGE_TEST_DATA.key, STORAGE_TEST_DATA.value);
           await del(STORAGE_TEST_DATA.key);
