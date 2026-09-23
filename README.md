@@ -98,6 +98,8 @@ await store.get(1);
 // undefined
 ```
 
+`IndexedDBStore` also works in service workers when IndexedDB is available. A window and its service worker on the same origin can use the same store ID and record ID to access the same persisted record. Check `await store.isCompatible()` before relying on cross-context persistence: when IndexedDB is unavailable, the store falls back to memory, which is local to that context.
+
 
 
 ### Types

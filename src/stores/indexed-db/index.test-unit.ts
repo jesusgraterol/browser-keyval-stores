@@ -32,6 +32,7 @@ describe('IndexedDBStore', () => {
   });
 
   test('it can interact with the Browser IndexedDB API when compatible', async () => {
+    vi.stubGlobal('indexedDB', {});
     vi.stubGlobal('window', { indexedDB: {} });
     const storeID = 'unit-test';
     const recordID = undefined;
@@ -51,7 +52,19 @@ describe('IndexedDBStore', () => {
     expect(del).toHaveBeenNthCalledWith(2, buildDataKey(storeID, recordID));
   });
 
-  test('it falls back to the TempMemoryStore if the Storage key is not in the window', async () => {
+  test('it uses IndexedDB in a service worker without a window', async () => {
+    vi.stubGlobal('indexedDB', {});
+    const store = new IndexedDBStore('worker-test');
+
+    await expect(store.isCompatible()).resolves.toBe(true);
+    await store.set('device', { token: 'test-token' });
+
+    expect(set).toHaveBeenCalledWith(buildDataKey('worker-test', 'device'), {
+      token: 'test-token',
+    });
+  });
+
+  test('it falls back to the TempMemoryStore if IndexedDB is unavailable', async () => {
     const storeID = 'unit-test';
     const recordID = undefined;
     const updateData = { hello: 'World!' };
@@ -67,7 +80,7 @@ describe('IndexedDBStore', () => {
   });
 
   test('it falls back to the TempMemoryStore if the Storage object throws when invoking its methods', async () => {
-    vi.stubGlobal('window', { indexedDB: {} });
+    vi.stubGlobal('indexedDB', {});
     const storeID = 'unit-test';
     const recordID = undefined;
     const updateData = { hello: 'World!' };
@@ -95,17 +108,17 @@ describe('IndexedDBStore', () => {
   });
 
   test('can determine if the mechanism is compatible', async () => {
-    vi.stubGlobal('window', {});
+    vi.stubGlobal('indexedDB', undefined);
     const store = new IndexedDBStore('unit-test');
     await expect(store.isCompatible()).resolves.toBe(false);
 
-    vi.stubGlobal('window', { indexedDB: {} });
+    vi.stubGlobal('indexedDB', {});
     mockSet();
     const store2 = new IndexedDBStore('unit-test');
     await expect(store2.isCompatible()).resolves.toBe(false);
     vi.restoreAllMocks();
 
-    vi.stubGlobal('window', { indexedDB: {} });
+    vi.stubGlobal('indexedDB', {});
     const store3 = new IndexedDBStore('unit-test');
     await expect(store3.isCompatible()).resolves.toBe(true);
   });
